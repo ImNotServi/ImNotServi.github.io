@@ -1,0 +1,145 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Panel de Gráficos - Medición de Pobreza</title>
+
+    <!-- Load Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawCharts);
+
+      function drawCharts() {
+
+        // ==============================
+        // 1. Gráfico de Línea - Pobreza Total
+        // ==============================
+        var data1 = new google.visualization.DataTable();
+        data1.addColumn('string', 'Año');
+        data1.addColumn('number', 'Pobreza (%)');
+        data1.addRows([
+          ['2008', 44.4],
+          ['2010', 46.1],
+          ['2012', 45.5],
+          ['2014', 46.2],
+          ['2016', 43.6],
+          ['2018', 41.9]
+        ]);
+
+        var options1 = {
+          title: 'Evolución de la Pobreza en México (2008-2018)',
+          width: 500,
+          height: 300
+        };
+
+        var chart1 = new google.visualization.LineChart(document.getElementById('line_total'));
+        chart1.draw(data1, options1);
+
+
+        // ==============================
+        // 2. Gráfico de Línea - Pobreza Extrema
+        // ==============================
+        var data2 = new google.visualization.DataTable();
+        data2.addColumn('string', 'Año');
+        data2.addColumn('number', 'Pobreza Extrema (%)');
+        data2.addRows([
+          ['2008', 11.0],
+          ['2010', 11.3],
+          ['2012', 9.8],
+          ['2014', 9.5],
+          ['2016', 7.6],
+          ['2018', 7.4]
+        ]);
+
+        var options2 = {
+          title: 'Evolución de la Pobreza Extrema (2008-2018)',
+          width: 500,
+          height: 300
+        };
+
+        var chart2 = new google.visualization.LineChart(document.getElementById('line_extrema'));
+        chart2.draw(data2, options2);
+
+
+        // ==============================
+        // 3. Gráfico de Barras - Carencias Sociales
+        // ==============================
+        var data3 = new google.visualization.DataTable();
+        data3.addColumn('string', 'Indicador');
+        data3.addColumn('number', 'Porcentaje');
+        data3.addRows([
+          ['Rezago educativo', 16.9],
+          ['Acceso a salud', 16.2],
+          ['Seguridad social', 57.3],
+          ['Calidad vivienda', 11.1],
+          ['Servicios básicos', 19.8],
+          ['Alimentación', 20.4]
+        ]);
+
+        var options3 = {
+          title: 'Carencias Sociales en México',
+          width: 500,
+          height: 300
+        };
+
+        var chart3 = new google.visualization.BarChart(document.getElementById('bar_carencias'));
+        chart3.draw(data3, options3);
+
+
+        // ==============================
+        // 4. Gráfico Circular - 2018
+        // ==============================
+        var data4 = new google.visualization.DataTable();
+        data4.addColumn('string', 'Clasificación');
+        data4.addColumn('number', 'Porcentaje');
+        data4.addRows([
+          ['Población en pobreza', 41.9],
+          ['Población no pobre', 58.1]
+        ]);
+
+        var options4 = {
+          title: 'Distribución de Pobreza en 2018',
+          width: 500,
+          height: 300
+        };
+
+        var chart4 = new google.visualization.PieChart(document.getElementById('pie_2018'));
+        chart4.draw(data4, options4);
+
+
+        // ==============================
+        // 5. Gráfico de Columnas - Reducción
+        // ==============================
+        var data5 = new google.visualization.DataTable();
+        data5.addColumn('string', 'Año');
+        data5.addColumn('number', 'Pobreza Extrema (%)');
+        data5.addRows([
+          ['2008', 11.0],
+          ['2018', 7.4]
+        ]);
+
+        var options5 = {
+          title: 'Reducción de Pobreza Extrema (2008 vs 2018)',
+          width: 500,
+          height: 300
+        };
+
+        var chart5 = new google.visualization.ColumnChart(document.getElementById('column_reduccion'));
+        chart5.draw(data5, options5);
+
+      }
+    </script>
+  </head>
+
+  <body>
+    <h2>Panel de Gráficos - Medición de Pobreza en México</h2>
+
+    <div id="line_total"></div>
+    <div id="line_extrema"></div>
+    <div id="bar_carencias"></div>
+    <div id="pie_2018"></div>
+    <div id="column_reduccion"></div>
+
+  </body>
+</html>
